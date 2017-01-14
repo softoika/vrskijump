@@ -5,12 +5,16 @@ public abstract class MouseController : MonoBehaviour {
 
 	protected IEnumerator update;
 
-	private bool isActivated; // マウス操作が有効かどうか
+	[SerializeField]
+	private GameObject escMenu;
+
+	private bool isActivated; // カメラのマウス操作が有効かどうか
 
 	public void Start(){
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 		isActivated = true;
+		escMenu.SetActive(false);
 		update = UpdateRotation ();
 		StartCoroutine (update);
 	}
@@ -24,6 +28,7 @@ public abstract class MouseController : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 			isActivated = false;
+			escMenu.SetActive(true);
 			StopCoroutine (update);
 		}
 		else if (Input.GetButtonDown("Cancel") && !isActivated) // マウス操作無効状態でESC押された
@@ -31,6 +36,7 @@ public abstract class MouseController : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 			isActivated = true;
+			escMenu.SetActive(false);
 			StartCoroutine (update);
 		}
 	}
