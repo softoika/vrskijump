@@ -109,7 +109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2431861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2431860}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95331acf9ece24614b3f811a10eb9d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptFolder: {fileID: 181905440}
 --- !u!1 &12530902
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,58 +472,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000011086035874, guid: 68b376779c1124759911d2c7bd052007,
     type: 2}
   m_PrefabInternal: {fileID: 1070167593}
---- !u!114 &181905441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 181905440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e63abed389415498ee9dd743c02b30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraObject: {fileID: 12530902}
-  colorCube: {fileID: 1471555654}
-  playerSphere: {fileID: 506828267}
-  Particle: {fileID: 2046903520}
-  BGM: {fileID: 159875125}
-  SE: {fileID: 1453291826}
-  jougen: 0
-  kagen: -0.2
-  jumpPower: 15
-  syagamiSpeed: 200
---- !u!114 &181905442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 181905440}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49fe86a74055148eb903b3516040d47b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 12530902}
-  playerSphere: {fileID: 506828267}
-  moveThreshold: 0.22
-  movePower: 2
---- !u!114 &181905445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 181905440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8846dbfc0a6c4729add96624b5ef8b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  escMenu: {fileID: 2431860}
-  mainCamera: {fileID: 12530902}
-  sensitivity: 2
-  yMinLimit: -90
-  yMaxLimit: 90
 --- !u!1001 &203763401
 Prefab:
   m_ObjectHideFlags: 0
@@ -2348,11 +2297,51 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010588892942, guid: 68b376779c1124759911d2c7bd052007,
+    - target: {fileID: 114000012515946864, guid: 68b376779c1124759911d2c7bd052007,
         type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: escMenuObject
+      value: 
+      objectReference: {fileID: 2431860}
+    - target: {fileID: 114000012733668176, guid: 68b376779c1124759911d2c7bd052007,
+        type: 2}
+      propertyPath: cameraObject
+      value: 
+      objectReference: {fileID: 12530902}
+    - target: {fileID: 114000012733668176, guid: 68b376779c1124759911d2c7bd052007,
+        type: 2}
+      propertyPath: colorCube
+      value: 
+      objectReference: {fileID: 1471555654}
+    - target: {fileID: 114000012733668176, guid: 68b376779c1124759911d2c7bd052007,
+        type: 2}
+      propertyPath: playerSphere
+      value: 
+      objectReference: {fileID: 506828267}
+    - target: {fileID: 114000012733668176, guid: 68b376779c1124759911d2c7bd052007,
+        type: 2}
+      propertyPath: Particle
+      value: 
+      objectReference: {fileID: 2046903520}
+    - target: {fileID: 114000012733668176, guid: 68b376779c1124759911d2c7bd052007,
+        type: 2}
+      propertyPath: BGM
+      value: 
+      objectReference: {fileID: 159875125}
+    - target: {fileID: 114000012733668176, guid: 68b376779c1124759911d2c7bd052007,
+        type: 2}
+      propertyPath: SE
+      value: 
+      objectReference: {fileID: 1453291826}
+    - target: {fileID: 114000012713772596, guid: 68b376779c1124759911d2c7bd052007,
+        type: 2}
+      propertyPath: escMenu
+      value: 
+      objectReference: {fileID: 2431860}
+    - target: {fileID: 114000012713772596, guid: 68b376779c1124759911d2c7bd052007,
+        type: 2}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 12530902}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68b376779c1124759911d2c7bd052007, type: 2}
   m_IsPrefabParent: 0

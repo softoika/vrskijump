@@ -17,6 +17,9 @@ public class OculusCameraMock : MouseController {
 	[SerializeField]
 	private float yMaxLimit = 90f;
 
+	/// <summary>
+	/// マウス操作で視点の操作をする
+	/// </summary>
 	public override IEnumerator UpdateRotation(){
 		float rotationY = 0f;
 		yield return null;
