@@ -22,6 +22,6 @@ public abstract class MouseController : MonoBehaviour {
 	public void OnClosePauseMenu()
 	{
 		// UpdateRotation()の処理を再開させる=>マウスによる視点操作を有効にする
-		StopCoroutine(update);
+		StartCoroutine(update);
 	}
 }

@@ -6,10 +6,9 @@ using System.Collections;
 /// ESCキーでマウス操作をオフにする
 /// 左クリックでマウス操作をオンにする
 /// </summary>
+[RequireComponent(typeof(Camera))]
 public class OculusCameraMock : MouseController {
 
-	[SerializeField]
-	private GameObject mainCamera;
 	[SerializeField]
 	private float sensitivity = 1f;
 	[SerializeField]
@@ -25,11 +24,11 @@ public class OculusCameraMock : MouseController {
 		yield return null;
 
 		while (true) {
-			float rotationX = mainCamera.transform.localEulerAngles.y + Input.GetAxis ("Mouse X") * sensitivity;
+			float rotationX = transform.localEulerAngles.y + Input.GetAxis ("Mouse X") * sensitivity;
 			rotationY -= Input.GetAxis ("Mouse Y") * sensitivity;
 			rotationY = ClampAngle (rotationY, yMinLimit, yMaxLimit);
 
-			mainCamera.transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0f);
+			transform.localEulerAngles = new Vector3 (rotationY, rotationX, 0f);
 
 			yield return null;
 		}

@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class ESCMenu : MonoBehaviour{
 
 	[SerializeField]
-	private GameObject scriptFolder;
+	private GameObject mainCamera;
 
 	private OculusCameraMock oculusCameraMock;
 	private Canvas menuCanvas;
 
 	public void Start()
 	{
-		oculusCameraMock = scriptFolder.GetComponent<OculusCameraMock>();
+		oculusCameraMock = mainCamera.GetComponent<OculusCameraMock>();
 		menuCanvas = GetComponent<Canvas>();
 		// メニューを閉じた状態で開始
 		Cursor.lockState = CursorLockMode.Locked;

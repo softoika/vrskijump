@@ -26,7 +26,7 @@ public class chakuti : MonoBehaviour {
 			rig.isKinematic = true;
 
 			scoreBoardCanvas.enabled = true;
-			chakuchiParticle.SetActive(true);
+			//chakuchiParticle.SetActive(true);
         }
     }
 }

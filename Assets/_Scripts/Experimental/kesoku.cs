@@ -32,10 +32,9 @@ public class kesoku : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         kabe = this.transform.position;
-        Debug.Log("ke");
+        
         if (col.gameObject.CompareTag("keisoku"))
-        {
-            Debug.Log("kesi");
+		{
             //hikyori = kabe.z - pos.z;
 
             // gameObject.SetActive(true);
