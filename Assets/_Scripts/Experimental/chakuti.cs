@@ -3,12 +3,16 @@ using System.Collections;
 
 public class chakuti : MonoBehaviour {
 
-    public GameObject gameObject;
+    public GameObject scoreBoard;
 	public GameObject chakuchiParticle;
+	private Rigidbody rig;
+	private Canvas scoreBoardCanvas;
 
     // Use this for initialization
     void Start () {
-	
+		rig = GetComponent<Rigidbody>();
+		scoreBoardCanvas = scoreBoard.GetComponent<Canvas>();
+		scoreBoardCanvas.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -18,10 +22,10 @@ public class chakuti : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         if (kesoku.f==1) {
-            // 移動しない設定
-            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+			// 移動しない設定
+			rig.isKinematic = true;
 
-            gameObject.SetActive(true);
+			scoreBoardCanvas.enabled = true;
 			chakuchiParticle.SetActive(true);
         }
     }

@@ -26,7 +26,6 @@ public class JumpTest : MonoBehaviour
     void Start () {
 		startPosY = cameraObject.transform.localPosition.y;
 		Debug.Log("startPosY:" + startPosY);
-		cubeColor = colorCube.GetComponent<CubeColor>();
 		psRigid = playerSphere.GetComponent<Rigidbody>();
 		Particle.SetActive(false);
 	}
