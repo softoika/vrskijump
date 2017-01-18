@@ -18,10 +18,10 @@ public class PlayerState : MonoBehaviour {
 
 
 	[SerializeField]
-	private AudioSource windSFX;
+	private AudioSource windAudio;
 
 	[SerializeField]
-	private AudioSource jumpSFX;
+	private AudioSource jumpAudio;
 
 
 	[SerializeField]
@@ -57,7 +57,7 @@ public class PlayerState : MonoBehaviour {
 		if (cameraPos.y - initialCameraPosition.y < lowerLimit)
 		{
 			isSliding = true;
-			windSFX.Play();
+			if(!windAudio.isPlaying) windAudio.Play();
 			windEffect.SetActive(true);
 			// 滑走状態の加速
 			//playerRigid.AddForce(new Vector3(0, -slidingSpeed, -slidingSpeed), ForceMode.Acceleration);
@@ -71,9 +71,9 @@ public class PlayerState : MonoBehaviour {
 		         cameraPos.y - initialCameraPosition.y >= upperLimit)
 		{
 			isSliding = false;
-			windSFX.Stop();
+			windAudio.Stop();
 			windEffect.SetActive(false);
-			jumpSFX.Play();
+			jumpAudio.Play();
 			// ジャンプ
 			playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.VelocityChange);
 		}

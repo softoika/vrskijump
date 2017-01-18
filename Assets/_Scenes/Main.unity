@@ -1204,8 +1204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 12530902}
   windEffect: {fileID: 518188904}
-  windSFX: {fileID: 159875125}
-  jumpSFX: {fileID: 1453291826}
+  windAudio: {fileID: 159875125}
+  jumpAudio: {fileID: 1453291826}
   upperLimit: 0
   lowerLimit: -0.2
   jumpPower: 10
@@ -1297,18 +1297,6 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e41a1ff11fe7f43e3bb0a215c7cd3d54, type: 2}
   m_PrefabInternal: {fileID: 1844410825}
---- !u!114 &518188908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 518188904}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ac28393bc6546699db123e125b669f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 506828267}
 --- !u!1 &542397687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,7 +2153,7 @@ Prefab:
         type: 2}
       propertyPath: BGM
       value: 
-      objectReference: {fileID: 159875125}
+      objectReference: {fileID: 0}
     - target: {fileID: 114000012733668176, guid: 68b376779c1124759911d2c7bd052007,
         type: 2}
       propertyPath: SE
