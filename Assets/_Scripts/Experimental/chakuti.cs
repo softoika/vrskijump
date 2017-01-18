@@ -13,6 +13,7 @@ public class chakuti : MonoBehaviour {
 		rig = GetComponent<Rigidbody>();
 		scoreBoardCanvas = scoreBoard.GetComponent<Canvas>();
 		scoreBoardCanvas.enabled = false;
+		rig.constraints = RigidbodyConstraints.FreezeRotation;
 	}
 	
 	// Update is called once per frame

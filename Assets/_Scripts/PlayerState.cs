@@ -60,7 +60,11 @@ public class PlayerState : MonoBehaviour {
 			windSFX.Play();
 			windEffect.SetActive(true);
 			// 滑走状態の加速
-			playerRigid.AddForce(new Vector3(0, -slidingSpeed, -slidingSpeed), ForceMode.Acceleration);
+			//playerRigid.AddForce(new Vector3(0, -slidingSpeed, -slidingSpeed), ForceMode.Acceleration);
+
+			Vector3 dir = playerRigid.velocity.normalized;
+			Debug.Log(dir);
+			playerRigid.AddForce(dir * slidingSpeed, ForceMode.Acceleration);
 		}
 		// 滑走状態のときにMain Cameraの高さが初期位置よりupperLimitだけ挙がっていたらジャンプできる
 		else if (isSliding && 
