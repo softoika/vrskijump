@@ -16,6 +16,8 @@ public class PlayerState : MonoBehaviour {
 	[SerializeField]
 	private GameObject windEffect;
 
+	[SerializeField]
+	private GameObject recordingStartLine;
 
 	[SerializeField]
 	private AudioSource windAudio;
@@ -39,6 +41,14 @@ public class PlayerState : MonoBehaviour {
 	private Vector3 initialCameraPosition;
 	private Rigidbody playerRigid;
 	private bool isSliding; // 滑走状態か
+	private bool isPassed;  // RecordingStartLineを越えたか
+
+	// プレイヤーが着地したかどうか
+	public bool isLanded
+	{
+		get;
+		private set;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +56,9 @@ public class PlayerState : MonoBehaviour {
 		isSliding = false;
 		windEffect.SetActive(false);
 		playerRigid = GetComponent<Rigidbody>();
+		playerRigid.constraints = RigidbodyConstraints.FreezeRotation;
+		isPassed = false;
+		isLanded = false;
 	}
 	
 	// Update is called once per frame
@@ -76,6 +89,24 @@ public class PlayerState : MonoBehaviour {
 			jumpAudio.Play();
 			// ジャンプ
 			playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.VelocityChange);
+		}
+	}
+
+	void OnTriggerEnter(Collider col)
+	{
+		if (col.gameObject == recordingStartLine)
+		{
+			isPassed = true;
+		}
+	}
+
+	void OnCollisionEnter(Collision col)
+	{
+		// Record Start Lineを超えた後に着地したらPlayerが動かないようにする
+		if (isPassed)
+		{
+			isLanded = true;
+			playerRigid.isKinematic = true;
 		}
 	}
 }
