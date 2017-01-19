@@ -8,6 +8,9 @@ public class KeyInputManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject mainCamera;
 
+	[SerializeField]
+	private GameObject startingFloor;
+
 	private ESCMenu escMenu;
 	// Use this for initialization
 	void Start () {
@@ -33,6 +36,10 @@ public class KeyInputManager : MonoBehaviour {
 		else if (Input.GetKeyUp(KeyCode.Space))
 		{
 			pos.y += 0.3f;
+		}
+		else if (Input.GetKeyDown(KeyCode.Return))
+		{
+			startingFloor.SetActive(false);
 		}
 
 		mainCamera.transform.localPosition = pos;
