@@ -20,17 +20,17 @@ public class PlayerState : MonoBehaviour {
 	private GameObject recordingStartLine;
 
 	[SerializeField]
-	private AudioSource windAudio;
+	private AudioSource windSE;
 
 	[SerializeField]
-	private AudioSource jumpAudio;
+	private AudioSource jumpSE;
 
 
 	[SerializeField]
-	private float upperLimit = 0.0f;
+	private float upperLimit = 0.0f; // ジャンプの判定に用いる高さの閾値
 
 	[SerializeField]
-	private float lowerLimit = -0.2f;
+	private float lowerLimit = -0.2f;// 滑走状態の判定に用いる低さの閾値
 
 	[SerializeField]
 	private float jumpPower = 10;
@@ -38,10 +38,10 @@ public class PlayerState : MonoBehaviour {
 	[SerializeField]
 	private float slidingSpeed = 200; // 滑走速度
 
-	private Vector3 initialCameraPosition;
 	private Rigidbody playerRigid;
-	private bool isSliding; // 滑走状態か
-	private bool isPassed;  // RecordingStartLineを越えたか
+	private Vector3 initialCameraPosition; // カメラの初期位置。この位置を基準に滑走状態やジャンプ判定をする
+	private bool isSliding;                // 滑走状態か
+	private bool isPassed;                 // RecordingStartLineを越えたか
 
 	// プレイヤーが着地したかどうか
 	public bool isLanded
@@ -51,7 +51,8 @@ public class PlayerState : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		initialCameraPosition = mainCamera.transform.localPosition;
 		isSliding = false;
 		windEffect.SetActive(false);
@@ -62,33 +63,39 @@ public class PlayerState : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		var cameraPos = mainCamera.transform.localPosition;
-		Debug.Log("initPosY=" + initialCameraPosition.y + ", posY=" + cameraPos.y);
 
 		// Main Cameraが初期位置よりlowerLimitだけ下がっていたら滑走状態となる
-		if (cameraPos.y - initialCameraPosition.y < lowerLimit)
+		if (!isLanded &&
+			cameraPos.y - initialCameraPosition.y < lowerLimit)
 		{
 			isSliding = true;
-			if(!windAudio.isPlaying) windAudio.Play();
+			if (!windSE.isPlaying) windSE.Play();
 			windEffect.SetActive(true);
-			// 滑走状態の加速
-			//playerRigid.AddForce(new Vector3(0, -slidingSpeed, -slidingSpeed), ForceMode.Acceleration);
 
+			// 速度出ている方向に加速する
 			Vector3 dir = playerRigid.velocity.normalized;
-			Debug.Log(dir);
 			playerRigid.AddForce(dir * slidingSpeed, ForceMode.Acceleration);
 		}
 		// 滑走状態のときにMain Cameraの高さが初期位置よりupperLimitだけ挙がっていたらジャンプできる
-		else if (isSliding && 
-		         cameraPos.y - initialCameraPosition.y >= upperLimit)
+		else if (isSliding && !isLanded &&
+				 cameraPos.y - initialCameraPosition.y >= upperLimit)
 		{
 			isSliding = false;
-			windAudio.Stop();
+			windSE.Stop();
 			windEffect.SetActive(false);
-			jumpAudio.Play();
+			jumpSE.Play();
+
 			// ジャンプ
 			playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.VelocityChange);
+		}
+		// 計測開始後の着地をしているとき
+		else if (isLanded)
+		{
+			windSE.Stop();
+			windEffect.SetActive(false);
 		}
 	}
 

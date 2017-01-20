@@ -7,6 +7,7 @@ public class ScoreBoard : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject player;
+
 	[SerializeField]
 	private Text scoreText;
 
