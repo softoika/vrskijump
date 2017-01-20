@@ -53,3 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escMenuObject: {fileID: 0}
   mainCamera: {fileID: 0}
+  startingFloor: {fileID: 0}
