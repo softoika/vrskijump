@@ -44,7 +44,7 @@ public class PlayerState : MonoBehaviour {
 	private bool isPassed;                 // RecordingStartLineを越えたか
 
 	// プレイヤーが着地したかどうか
-	public bool isLanded
+	public bool isLanding
 	{
 		get;
 		private set;
@@ -59,7 +59,7 @@ public class PlayerState : MonoBehaviour {
 		playerRigid = GetComponent<Rigidbody>();
 		playerRigid.constraints = RigidbodyConstraints.FreezeRotation;
 		isPassed = false;
-		isLanded = false;
+		isLanding = false;
 	}
 	
 	// Update is called once per frame
@@ -68,7 +68,7 @@ public class PlayerState : MonoBehaviour {
 		var cameraPos = mainCamera.transform.localPosition;
 
 		// Main Cameraが初期位置よりlowerLimitだけ下がっていたら滑走状態となる
-		if (!isLanded &&
+		if (!isLanding &&
 			cameraPos.y - initialCameraPosition.y < lowerLimit)
 		{
 			isSliding = true;
@@ -80,7 +80,7 @@ public class PlayerState : MonoBehaviour {
 			playerRigid.AddForce(dir * slidingSpeed, ForceMode.Acceleration);
 		}
 		// 滑走状態のときにMain Cameraの高さが初期位置よりupperLimitだけ挙がっていたらジャンプできる
-		else if (isSliding && !isLanded &&
+		else if (isSliding && !isLanding &&
 				 cameraPos.y - initialCameraPosition.y >= upperLimit)
 		{
 			isSliding = false;
@@ -92,7 +92,7 @@ public class PlayerState : MonoBehaviour {
 			playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.VelocityChange);
 		}
 		// 計測開始後の着地をしているとき
-		else if (isLanded)
+		else if (isLanding)
 		{
 			windSE.Stop();
 			windEffect.SetActive(false);
@@ -112,7 +112,7 @@ public class PlayerState : MonoBehaviour {
 		// Record Start Lineを超えた後に着地したらPlayerが動かないようにする
 		if (isPassed)
 		{
-			isLanded = true;
+			isLanding = true;
 			playerRigid.isKinematic = true;
 		}
 	}

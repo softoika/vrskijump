@@ -30,7 +30,7 @@ public class ScoreBoard : MonoBehaviour {
 	void Update ()
 	{
 		// 着地後ならスコアボードを表示する
-		if (playerState.isLanded)
+		if (playerState.isLanding)
 		{
 			int shojiCount = shojiScoreCounter.totalCount;
 			int shojiScore = shojiScoreCounter.totalScore;
