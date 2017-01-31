@@ -20,10 +20,16 @@ public class PlayerState : MonoBehaviour {
 	private GameObject recordingStartLine;
 
 	[SerializeField]
+	private GameObject heightLimitArea;
+
+	[SerializeField]
 	private AudioSource windSE;
 
 	[SerializeField]
 	private AudioSource jumpSE;
+
+	[SerializeField]
+	private AudioSource landSE;
 
 
 	[SerializeField]
@@ -42,6 +48,7 @@ public class PlayerState : MonoBehaviour {
 	private Vector3 initialCameraPosition; // カメラの初期位置。この位置を基準に滑走状態やジャンプ判定をする
 	private bool isSliding;                // 滑走状態か
 	private bool isPassed;                 // RecordingStartLineを越えたか
+	private bool isOver;                 // 高度制限を越えたか
 
 	// プレイヤーが着地したかどうか
 	public bool isLanding
@@ -60,6 +67,7 @@ public class PlayerState : MonoBehaviour {
 		playerRigid.constraints = RigidbodyConstraints.FreezeRotation;
 		isPassed = false;
 		isLanding = false;
+		isOver = false;
 	}
 	
 	// Update is called once per frame
@@ -75,7 +83,7 @@ public class PlayerState : MonoBehaviour {
 			if (!windSE.isPlaying) windSE.Play();
 			windEffect.SetActive(true);
 
-			// 速度出ている方向に加速する
+			//速度出ている方向に加速する
 			Vector3 dir = playerRigid.velocity.normalized;
 			playerRigid.AddForce(dir * slidingSpeed, ForceMode.Acceleration);
 		}
@@ -88,8 +96,12 @@ public class PlayerState : MonoBehaviour {
 			windEffect.SetActive(false);
 			jumpSE.Play();
 
-			// ジャンプ
-			playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.VelocityChange);
+			// 高度制限以下ならジャンプ
+			if (!isOver)
+			{
+				
+				playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.VelocityChange);
+			}
 		}
 		// 計測開始後の着地をしているとき
 		else if (isLanding)
@@ -99,11 +111,23 @@ public class PlayerState : MonoBehaviour {
 		}
 	}
 
+
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject == recordingStartLine)
 		{
 			isPassed = true;
+		}
+		else if (col.gameObject == heightLimitArea)
+		{
+			isOver = true;
+		}
+	}
+	void OnTriggerExit(Collider col)
+	{
+		if (col.gameObject == heightLimitArea)
+		{
+			isOver = false;
 		}
 	}
 
@@ -114,6 +138,8 @@ public class PlayerState : MonoBehaviour {
 		{
 			isLanding = true;
 			playerRigid.isKinematic = true;
+			// 着地効果音再生
+			landSE.Play();
 		}
 	}
 }

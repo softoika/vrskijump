@@ -39,8 +39,8 @@ public class ScoreBoard : MonoBehaviour {
 
 			scoreText.text = string.Format
 			(
-				"飛距離        {0, -4:F1}m\n" +
-                "破った障子の数  {1, -4}枚\n" +
+				"飛距離　　　{0, -4:F1}m\n" +
+                "障子の数　　 {1, -4}枚\n" +
 	            "障子スコア     {2, -4}点\n" +
 				"合計スコア     {3, -4}点"
 				, leap, shojiCount, shojiScore, totalScore
