@@ -23,6 +23,10 @@ public class PlayerState : MonoBehaviour {
 	private GameObject heightLimitArea;
 
 	[SerializeField]
+	private GameResult gameResult;
+
+
+	[SerializeField]
 	private AudioSource windSE;
 
 	[SerializeField]
@@ -48,14 +52,8 @@ public class PlayerState : MonoBehaviour {
 	private Vector3 initialCameraPosition; // カメラの初期位置。この位置を基準に滑走状態やジャンプ判定をする
 	private bool isSliding;                // 滑走状態か
 	private bool isPassed;                 // RecordingStartLineを越えたか
-	private bool isOver;                 // 高度制限を越えたか
-
-	// プレイヤーが着地したかどうか
-	public bool isLanding
-	{
-		get;
-		private set;
-	}
+	private bool isOver;                   // 高度制限を越えたか
+	private bool isLanding;                // プレイヤーが着地したかどうか
 
 	// Use this for initialization
 	void Start () 
@@ -140,6 +138,8 @@ public class PlayerState : MonoBehaviour {
 			playerRigid.isKinematic = true;
 			// 着地効果音再生
 			landSE.Play();
+			// ゲーム結果表示
+			gameResult.ShowGameResult();
 		}
 	}
 }
