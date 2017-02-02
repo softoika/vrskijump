@@ -12,6 +12,9 @@ public class GameResult : MonoBehaviour {
 	[SerializeField]
 	private GameObject fireworks;
 
+	[SerializeField]
+	private AudioSource fanfare;
+
 	// Use this for initialization
 	void Start () {
 		scoreBoardCanvas.enabled = false;
@@ -22,5 +25,6 @@ public class GameResult : MonoBehaviour {
 		shojiFolder.SetActive(false); // 視界の邪魔にならないように障子をすべて消す
 		scoreBoardCanvas.enabled = true; // スコアボードを表示する
 		fireworks.SetActive(true); // 花火エフェクトオン
+		fanfare.Play();
 	}
 }
