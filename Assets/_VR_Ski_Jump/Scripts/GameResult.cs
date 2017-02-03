@@ -15,11 +15,6 @@ public class GameResult : MonoBehaviour {
 	[SerializeField]
 	private AudioSource fanfare;
 
-	// Use this for initialization
-	void Start () {
-		scoreBoardCanvas.enabled = false;
-	}
-
 	public void ShowGameResult()
 	{
 		shojiFolder.SetActive(false); // 視界の邪魔にならないように障子をすべて消す

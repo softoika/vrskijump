@@ -97,8 +97,8 @@ public class PlayerState : MonoBehaviour {
 			// 高度制限以下ならジャンプ
 			if (!isOver)
 			{
-				
-				playerRigid.AddForce(new Vector3(0, jumpPower, 0), ForceMode.VelocityChange);
+				float g = Physics.gravity.normalized.y; // 重力方向
+				playerRigid.AddForce(new Vector3(0, -g * jumpPower, 0), ForceMode.VelocityChange);
 			}
 		}
 		// 計測開始後の着地をしているとき
