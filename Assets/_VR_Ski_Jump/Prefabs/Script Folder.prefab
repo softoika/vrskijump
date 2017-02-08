@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012237131542}
   - 114: {fileID: 114000012515946864}
+  - 114: {fileID: 114000011147852078}
   m_Layer: 0
   m_Name: Script Folder
   m_TagString: Untagged
@@ -40,6 +41,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000011147852078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011086035874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da3f312ff68e44fd9b0feebcbd4fbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shojiFolder: {fileID: 0}
+  scoreBoardCanvas: {fileID: 0}
+  fireworks: {fileID: 0}
+  fanfare: {fileID: 0}
 --- !u!114 &114000012515946864
 MonoBehaviour:
   m_ObjectHideFlags: 1

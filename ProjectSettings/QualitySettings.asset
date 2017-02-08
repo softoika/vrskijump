@@ -137,7 +137,7 @@ QualitySettings:
     asyncUploadBufferSize: 4
     excludedTargetPlatforms: []
   - serializedVersion: 2
-    name: Fantastic
+    name: VR_Mac
     pixelLightCount: 4
     shadows: 0
     shadowResolution: 2
