@@ -25,7 +25,11 @@ public class KeyInputManager : MonoBehaviour {
 		// ESCキーが押されたときはポーズメニューの表示/非表示を行う
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			escMenu.TogglePauseMenu();
+			//escMenu.TogglePauseMenu();
+			#if UNITY_EDITOR
+			UnityEditor.EditorApplication.isPlaying = false;
+			#endif
+			Application.Quit();
 		}
 		// スペースキーを押すと頭の位置が下がる(滑走状態に入る)
 		else if (Input.GetKeyDown(KeyCode.Space))

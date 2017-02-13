@@ -8,7 +8,7 @@ public class GameResult : MonoBehaviour {
 	private List<GameObject> removableObjects = new List<GameObject>();
 
 	[SerializeField]
-	private Canvas scoreBoardCanvas;
+	private GameObject scoreBoard;
 
 	[SerializeField]
 	private GameObject fireworks;
@@ -24,7 +24,8 @@ public class GameResult : MonoBehaviour {
 			ro.SetActive(false);
 		}
 
-		scoreBoardCanvas.enabled = true; // スコアボードを表示する
+		//scoreBoardCanvas.enabled = true; // スコアボードを表示する
+		scoreBoard.SetActive(true);
 		fireworks.SetActive(true); // 花火エフェクトオン
 		fanfare.Play();
 	}
